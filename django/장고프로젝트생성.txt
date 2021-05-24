@@ -1,0 +1,67 @@
+--> mac-> python3 manage.py runserver 로 입력하면됨- > 버전 안맞아서 오류시에 
+conda create -n django python=3.8
+conda activate django
+pip install django
+pip install jupyter
+
+control+`  : 터미널 실행됨 -> cmd 해서 키는 역할 
+
+control+shift +p  : 명령팔레트
+terminal 검색
+터미널:기본프로필 선택 ->명령프롬프트 선택 
+
+장고 프로젝트 생성
+장고 가상환경으로 가서 ->conda activate django 
+django-admin startproject config . 
+
+
+config/settings.py 클릭 
+왼쪽밑에 pyton 버전 클릭해서 만들었던 가상환경중 사용할 django를 선택함.
+103번라인 근처
+LANGUAGE_CODE = 'ko-KR'
+TIME_ZONE = 'Asia/Seoul'   
+으로 설정을 변경한다.
+
+- python manage.py makemigrations 어플리케이션의 변경을 추적해 DB에 적용할 변경사항을 정
+리한다.
+- python manage.py migrate : makemigrations 로 정리된 DB 변경 내용을 Database에 적용한다
+- python manage.py createsuperuser :관리자 계정생성
+- python manage.py runserver 테스트 서버를 실행한다
+->control + http://127.0.0.1:8000클릭 하고 ->http://127.0.0.1:8000/admin 을 하면
+아이디 비번 넣는 찾으로 감.. 프로젝트 생성된 것이다.
+
+http://127.0.0.1:8000/admin/login/?next=/admin/
+root /1111
+
+# 연결 끊고 
+# app생성 -> 앱을 만든것.. 회원가입,쇼핑 이런.. 
+
+- python manage.py startapp exam ->명령어 입력하면 exam이란 폴더 생김-> 앱생성된것.
+- cofig/settings.py  -->33번라인 -->만들 앱추가 exam
+-▪ App 을 생성하면 반드시 settings.INSTALLED_APP 에 등록 해야 한다.
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'exam',
+]
+
+- url설정 작업
+ - exam 아래 urls.py 파일을 만들기.
+ - config/urls.py 에 exam.urls.py를 추가 
+ - config/urls.py 에 from django.urls import path, include  -> include 추가 import 한다
+  그리고 urlpatterns 에 path('exam/', include('exam.urls'))
+ - exam/views.py : 사용자가 요청하는 거 구현 하는 함수 만들
+-exam/url.py 에 위에서 만든 함수와 url을 설정 후에 
+ - path('hello1') -> 사용자가 hello1이라고 요청을 하면  실행될 수있게 설정 -> path("hello1", views.hello1, name ='hello1')
+http://127.0.0.1:8000/exam/hello1 입력하면 시간 나오면 됨.. --> 인사말은 고정, 시간은 계속 바뀜. 동적 어플리케이션이됨.
+
+(python manage.py runserver -> 서버와..연결하는 명령문.. )
+
+- 새폴더 생성
+ - exam 아래 templates/exam 폴더 생성 
+ - 새파일 : greeting.html 
+html5선택하면 
