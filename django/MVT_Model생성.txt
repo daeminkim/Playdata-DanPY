@@ -1,0 +1,39 @@
+프로젝트 디렉토리 생성
+ - mypoll
+
+vscode 가상환경 잡기
+- 명령 팔레트 실행 : control + shift +p 
+   -> python select interpreter 선택 -> django 가상환경 선택
+- 터미널에서 프로젝트 생성.
+   django-admin startproject config . 
+   config/settings.py
+   LANGUAGE_CODE = 'ko-KR' , TIME_ZONE = 'Asia/Seoul'   -> 설정
+- 기본 App들 관련 Table들 생성.
+   python manage.py migrate
+- 관리자 계정 
+ python manage.py createsuperuser (root, a@a.com,1111)
+- app (이름 : polls) 만들기 
+ python manage.py startapp polls
+
+- app 등록 반드시 해줘야함..
+ config/settings.py 에 app 등록
+ INSTALLED_APPS =[...,'polls']
+
+### Model 구현
+- polls/models.py  모델 클래스 작성
+ - 코드 보기~!
+- polls/admin.py 구현한 모델 클래스들을 등록
+- model 클래스를 이용해서 DB의 테이블을 생성
+ python manage.py makemigrations  # 테이블 생성 sql문 생성 //모델클래스 내용이바뀌면 다시 해줘야한다.
+ python manage.py migrate # DB에 테이블을 생성하는 역할
+
+--- 다생성했으니 runserver 한다. - 모델을 만들고 admin에서 관리 하고 싶으면 admin.py에  register 해줘야함다.
+
+
+- 서버실행 python manage.py runserver
+  127.0.0.1:8000
+
+#################5교시 
+##sqlite browser 설치하기 ..    구조 확인하려고 했음
+# 6교시.. 장고에서 제공하는 shell  프로젝트 있는 폴더에서해야함.. 장고쉘 -> 테스트 할대 주로 쓰는 ...  jupyter 와같은.. 
+# 프로젝트 폴더에서 주피터 노트북 실행 
