@@ -1,0 +1,24 @@
+- mypoll CBV
+
+- account 앱 생성
+python manage.py startapp account
+ config/settings.py 에 account앱 등록 
+ account/urls.py 생성 -> config/url.py 에등록 
+ accunt/templates/account 디렉토리 생성 
+
+- 로그인 / 로그아웃 만들거야~
+ -config/settings.py 에 인증 관련 설정.
+	- LOGIN_DIRECT_URL  : 로그인 성공시 이동할 url (redirect -view의 url 을 주면됨)
+	- LOGIN_URL : 인증(로그인) 해야만 요청할 수 있는 요청을 로그인 하지 않은 상태로 
+		      요청했을때 이동할 url(보통 로그인 화면으로이동)
+	- LOGOUT_REDIRECT_URL : 로그아웃 성공시 이동할 url(redirect -view의 url을 주면됨)
+
+- 로그인 
+ - urls.py 에 loginView를 등록 + 로그인 화면 template
+ - login_template화면 생성
+
+- 로그아웃
+ - urls.py 에 LogoutView를 등록
+
+- 가입
+ - CreateView를 사용. form_class:UserCreateForm
