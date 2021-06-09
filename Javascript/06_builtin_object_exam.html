@@ -1,0 +1,85 @@
+<!-- builtin_object_exam.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function arrayExam(){
+            
+            let arr = [1,2,3,4,'바나나','귤', true]
+            console.log(arr)
+            console.log('배열 크기 : '+arr.length)
+            let v1 = arr.pop()  // 마지막 index 의 값을 삭제 하면서 return
+            let v2 = arr.shift() // 첫번째 index의 값을 삭제 하면서 return 
+            console.log(v1, v2)
+            console.log(arr)
+            
+            //let v3 = arr.splice(1,2) // index1부터 개의 원소를 삭제하면서 반환
+            let v3 = arr.splice(1) // index 1부터 나머지 모두를 삭제하면서 반환
+            console.log(`splice(1,2): ${v3}`)
+            console.log(arr)
+            
+             arr.push("마지막값") // 추가
+             arr.push(10,20,30,)
+             console.log(arr)
+            
+            arr.unshift('첫번째 값')  // 첫번째 값으로 삽입 한다.
+            console.log(arr)
+            
+            arr.splice(2,0, "삽입할 값",1,2,3,4,5) // 중간에 삽입 2번 index 에서 0개삭제하는 거고 삽입할 값을 주면 2번인덱스 자리에 삽입할 값을 삽입한다.
+            console.log(arr)  
+            
+            s = arr.join('|') // 전달한 문자열을 구분자(기본: ,)로 원소들을 합쳐서 하나의 문자열로 반환
+            console.log(s)
+        }
+        function arrayExam2() {
+            let arr = ['a','b','c','d','e']
+            console.log(arr[0], arr[2])
+            arr[1] = '가'  // index 1을 '가'로 변경
+            console.log(arr)
+            arr[7] = '나'  // 없는 index 는 undefined 로 
+            console.log(arr)
+            console.log(arr[6])
+            for (let i = 0; i < arr.length; i++) {   // 비어있는 인덱스까지 나온다.
+                console.log(arr[i])
+             }
+            for (i in arr) {   // 값을 갖고있는 인덱스의 값만나온다.
+                console.log(i, arr[i])
+            }
+        }
+        function dateExam() {
+            let today = new Date() //실행시점의 날짜, 시간을 가진 Date객체 // 생성자 함수 new(): 객체만들어~
+            console.log(today)
+            let str = dateToString(today)
+            console.log(str)
+            console.log(new Date(2010,5,7))  //실제 2010/5+1/7 특정 날짜 가진 객체 만들기
+             console.log(new Date(0,0,0,10,10)) //10시 10분
+            console.log(new Date(2021,5,9,10,45,10)) // 년월일시분초 순서로 넣고 앞에 것은 필요없더라도 생략하면 안된다.
+        }
+        function dateToString(dt) {
+            let year = dt.getFullYear() // 4자리 년도 그냥 getyear는 두자리
+            let month = dt.getMonth()+1  // 월: 0~11월 로 반환 되니까 +1, 월변경: -1한 값을 넣어야함.
+            if(month<10) {month = '0'+month}  // 명령문 하나면 중괄호 생략 가능
+            let date = dt.getDate()
+            if(date < 10) date = '0'+date
+
+            let hour = dt.getHours() 
+            if(hour < 10) hour = '0'+hour
+            let minute = dt.getMinutes()
+            if(minute < 10) minute = '0'+minute
+            let second = dt.getSeconds()
+            if(second < 10) second = '0'+second
+
+            return year+"/"+month+'/'+date+" "+hour+":"+minute+":"+second
+        }
+        
+    </script>
+</head>
+<body>
+    <input type='button' onclick='arrayExam()' value='arrayExam1'>
+    <input type='button' onclick='arrayExam2()' value='arrayExam2'>
+    <input type='button' onclick='dateExam()' value='dateExam'>
+</body>
+</html>
