@@ -1,0 +1,73 @@
+<!-- 06_object_exam.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let person = {
+            name:"홍길동", // 문자열
+            age:20, // 정수 (number)
+            isMarriage:false, // boolean
+            "job name":"회사원", // property 이름에 변수에서 사용할 수 없는 특수 문자(공백)을 사용할 경우 " "감싸준다.
+            hobby:['게임', '스포츠'], // 배열 
+            // 메서드
+            go:function(place){
+                alert(place+"에 간다.")
+            },
+            getInfo: function(){
+                info = `이름: ${this.name}, 나이: ${this.age}` // this : 이 메소드를 가진 객체. 객체의 다른 property 호출할때 this를 사용.
+                return info
+            }
+        }
+        
+        // 값/메소드 호출: 객체.변수명,  객체["변수명"]
+        console.log(person.getInfo())
+        console.log(person["job name"])
+        // console.log(person.job name) error
+
+        console.log(person.name)
+        console.log(person["name"])
+        // console.log(person[name]) undefined
+        m = person.isMarriage ? "기혼" : "미혼"
+        console.log(m)
+        person.go("서울")
+        person.age = 50 // 값을 변경한
+        console.log(person.getInfo())
+        // 객체 구조분해 
+        let {name, age, isMarriage, address ='없음'} = person
+        //name = person.name
+        // age = person.age
+        // isMarriage = person.isMarriage
+        console.log(name, age, isMarriage,address)
+
+
+        // 배열 구조 분해 
+        arr = [100,200,300,400,500]
+        // let [v1, v2, v3] = arr  // v1 = arr[0], v2 = arr[1], v3 = arr[2]
+        let [v1, v2, ...v3] = arr  // v1 = arr[0], v2 = arr[1], v3 = 나머지 
+        console.log(v1, v2, v3)
+
+
+        // 취미가 몇개로 되어있는지 모르고 출력 하고 싶을 때
+        console.log(person.hobby)
+        for (hobby_idx in person.hobby){
+            console.log(person.hobby[hobby_idx])
+        }
+
+
+        // 취미가 2개인 것을 알고 변수에 넣어 계속 사용하고 싶을때
+        let [hobby1,hobby2] = person.hobby
+        console.log(hobby1, hobby2)
+
+
+    </script>
+</head>
+<body>
+    <button type = 'button' onclick = "window.close()">닫기</button>
+    
+    <button type ='button' onclick='window.history.back()'>이전페이지</button>
+    
+</body>
+</html>

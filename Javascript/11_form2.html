@@ -1,0 +1,59 @@
+<!-- form2.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 체크박스 선택 개수 체크 
+        function checkHobby() {
+            hobbyList = document.f1.hobby // name = hobby 가 5개 -> 노드 리스트(checkbox노드 객체를 원소로 가진 배열)
+            console.log(hobbyList)
+            console.log(hobbyList.length)
+            var cnt = 0 //체크된 체크박스 개수
+            // for(idx in hobbyList){hobbyList[idx]}
+            for (i=0; i<hobbyList.length; i++)  {
+                if(hobbyList[i].checked) {  //hobbyList[i]- checkbox 객체 
+                    cnt++
+                }
+            }
+            
+            if(cnt < 3) {
+                alert('취미는 세개이상 체크하세요.')
+                return
+            }
+            alert('전송')
+            
+        }
+        // 모두 선택,해제 체크박스 선택시 취미 체크 박스 상태를 동일하게 만들어줌 
+        function checkAll() {
+            var f1 = document.f1  //form 객체 조회
+            var flag = f1.allCheck.checked // allCheck의 체크 상태 조회.
+            console.log(flag)
+            var hobbyList = f1.hobby  // hobby 체크박스 객체들을 조회.
+            for(i=0; i<hobbyList.length;i++){
+                hobbyList[i].checked = flag // hobby의 체크 상태를 allcheck의 체크상태 값으로 변경 
+                //hobbyList[i].click()
+            }
+        }
+    </script>
+</head>
+<body>
+    <form name='f1'>
+        취미를 선택하세요 (3개 이상선택)<br>
+        <input checked = 'true' type='checkbox' name='hobby' value='독서' id='reading'><label for='reading'>독서</label>
+        <input type='checkbox' name='hobby' value='음악' id='music'><label for='music'>음악</label>
+        <input type='checkbox' name='hobby' value='운동' id='workout'><label for='workout'>운동</label>
+        <input type='checkbox' name='hobby' value='게임' id='game'><label for='game'>게임</label>
+        <input type='checkbox' name='hobby' value='영화' id='movie'><label for='movie'>영화</label>
+        <br>
+        <input type='checkbox' name='allCheck' onclick='checkAll()' id="allchk"><label for="allchk">모두선택/해제</label>
+
+        <p>
+            <input type='button' value='체크박스확인' onclick='checkHobby()'>
+        </p>
+    </form>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!-- form3.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function get_item() {
+            var sel = document.f1.phone //<select> 객체
+            var idx = sel.selectedIndex  //선택 항목의 index
+            console.log(idx)
+            optionList = sel.options //<option>들을 배열로 반환.
+            // for (i=0; i < optionList.length; i++){
+            //     console.log(optionList[i].value+","+
+            //                 optionList[i].text+","+
+            //                 optionList[i].selected)
+            // }
+            //선택된 option의 value/text이 필요할때.. 화면에 띄우고 싶을 때 .
+            var str = optionList[idx].value+"-"+optionList[idx].text
+            console.log(str)
+
+            span = document.getElementById("layer")//<span></span> // id가 layer인 노드를 조회
+            span.innerHTML = "<b><i>"+str+"</i></b>" //<span>str</span> // 노드객체. innerHTML ='문자열' 문자열에 tag가 있을 겨우 dom 객체 처리(dom 객체처리->tag처리 된다는것).
+           }//동적으로 화면에 텍스트를 넣고 싶을때 innerHTML을 사용한다. 
+            // 자바스크립트 엔진이 span밑에 트리구조로 b태그 i태그를 만들어준다...
+        function checkSel() {
+            //번호선택이 선택되면 전송되지 않도록 처리.
+            // s = documen.getElementById
+            if(document.f1.phone.selectedIndex==0) {
+                alert('번호를 선택해요')
+                return false
+            }
+            
+        }
+    
+    </script>
+</head>
+<body>
+    <form name='f1' action='/add' onsubmit="return checkSel()">
+        <input type='submit' value='전송'><br>
+        <!--change 이벤트: select의 선택항목이 바뀌면 발생.-->
+        <select name='phone' onchange='get_item()'>
+            <!-- <option value='요청파라미터값'>Text<option> 
+                 value: 전송될 값, Text: 화면에 보여질 값
+                 value는 생략가능 (생략: Text가 value가 됨.)
+            -->
+            <option value='default'>번호선택</option>
+            <option>010</option>
+            <option>011</option>
+            <option>016</option>
+            <option>019</option>
+        </select>
+        <span id='layer'>선택내용</span>
+    </form>
+</body>
+</html>
