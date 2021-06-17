@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+//페이지가 로딩되는 시점에 매개변수로 전달한 함수를 호출.
+//ready에 전달 함수 -> 각 노드들에 envent handler를 추가.
+$(document).ready(function(){
+	// on(event명, 함수) # selector로 조회한 태그(element node)들에 event handler를 추가.
+	// $("#chk").on("click", function(){
+	$("#chk").one("click", function(){ // 이벤트 1번 설정후 삭제 한다.
+		//event 처리 함수(callback) 구현부에서 this => event 소스 Dom 객체 
+		alert(this.value);  // this chk 를 가르킴
+		/**********************
+		this는 Node 객체이지 jQuery객체가 아니다. 
+		***********************/
+		alert($(this).val())  // this : checkbox 노드객체를 넣어서 jQuery 객체 생성.
+		if(this.checked){
+			alert("체크되었습니다. "+this.checked);
+		}else{
+			alert("체크가 해제됨 : "+this.checked)
+		}
+	});
+	
+	$("#btn").on("click", function(){
+		//$("selector").prop("태그의속성명")->태그 속성의값 조회
+		alert($("#chk").prop("checked"));
+	});
+	
+	$("a").on("click", function(){
+		return confirm("정말 이동하겠습니까?");
+		//false가 리턴되면 a태그의 내장된 이벤트(이동하는)처리가 멈춘다. 
+	});
+	
+	$("li").on("mouseover", function(){
+		//this -> event source element node객체 
+		$(this).css("text-decoration", "underline");
+	});
+	
+	$("li").on("mouseout", function(){
+		$(this).css("text-decoration", "none");
+	});
+});
+
+</script>
+</head>
+<body>
+메일 수신여부 : 
+<input type="checkbox" name="mailing" value="수신한다." id="chk" checked="checked">
+<input type="button" value="click" id="btn">
+<hr>
+
+<a href="http://www.google.com">구글</a> <a href="http://www.daum.net">다음</a>
+<hr>
+
+<ul>
+	<li >우유</li>
+	<li>빵</li>
+	<li>두유</li>
+	<li>쿠키</li>
+	<li>탄산음료</li>
+</ul>
+</body>
+</html>

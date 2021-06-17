@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+.desc, #tb tbody{
+	cursor: pointer;
+}
+table{
+	width: 400px;
+}
+td, th{
+	padding: 5px;
+}
+.cls{
+	background-color: green;
+	color:snow;
+}
+
+
+</style>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("div").css("color", "pink")
+					.not("#cafe").css("background-color", "skyblue")
+	 				 .end().children("a").css("text-decoration", "none");
+	alert($("div").css('color')) // div의 컬러 속성값을 을 조회. 첫번째 노드의 요소
+	// span태그중 class속성이 desc
+	$("span.desc").on("click", function(){
+		//alert($(this).text());
+		$("span.desc").next().text("");
+		// event 처리 함수에서 this는 event sauce
+		$(this).next().text($(this).text());
+	});
+	
+	
+	/*
+		table의 tbody(내용) 의 한 행을 클릭하면 그행의 배경색을 바꾸고 
+					NO값(첫번째 td)을 조회해서 alert으로 보여준다. 
+			주의 : 선택된 행의 배경색만 변경되 있어야 한다.
+	*/
+	$("#tbody tr").on("click", function(){
+		$("#tbody tr").css("background-color", "white");
+		// this -> evenvt sauce -> 클릭된 tr
+		// var no = $(this).css("background-color", "yellow")
+		// 			 				//   .children(":first-child").text();
+		// 							 .children(":nth-child(2)").text(); //제목  nth-child(순서)--> 순서번째 텍스트
+		style ={
+			'color': 'green',
+			'background-color':'red',
+			'text-decoration':'underline',
+
+		}
+		var no =$(this).css(style).children(":first-child").text();
+
+	alert(no);
+	});
+	$("#btn").on('click', function(){  //3교시 다시 보기~!
+		// $("span.desc").addClass('cls')  //span.desc들에 class= 'cls'를 추가
+		$('span.desc').toggleClass('cls')   // class ='cls' 없으면 추가, 있으면 제거
+
+		//속성 조회 #cafe의 자손중 두번째 자식인 a태그 
+		link = $('#cafe a:nth-child(2)').prop("href")
+		alert(link)
+		$('#cafe a:nth-child(2)').prop('href','http://www.naver.com') //속성값 변경 
+	});
+});
+</script>
+</head>
+<body>
+	<button id = 'btn'>클릭하세요</button>
+<div id="cafe">
+카페:
+
+		<span>커피프랜차이즈</span> 
+		<a href="#">스타벅스</a>
+		<a href="#">커피빈</a>
+		<a href="#">커피베네</a>
+		<a href="#">java카페</a>
+
+</div>
+<br>
+<div>
+	포탈 : 
+	<a href="#">구글</a>
+	<a href="#">다음</a>
+	<a href="#">네이트</a>
+	<a href="#">네이버</a>
+</div>
+<hr/>
+<p id="descLayer">
+	<span class="desc">설명 1</span><span></span><br>
+	<span class="desc">설명 2</span><span></span><br>
+	<span class="desc">설명 3</span><span></span><br>
+	<span class="desc">설명 4</span><span></span><br>
+</p>
+<hr>
+
+<table border='1' id="tb">
+	<thead>
+		<tr>
+			<td>NO</td>
+			<td>제목</td>
+			<td>작성자</td>
+			<td>조회수</td>
+		</tr>
+	</thead>
+	<tbody id="tbody">
+		<tr>
+			<td>1</td>
+			<td>1번글입니다.</td>
+			<td>이영수</td>
+			<td>20</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>2번글입니다.</td>
+			<td>김유진</td>
+			<td>50</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>3번글입니다</td>
+			<td>정명길</td>
+			<td>70</td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>4번글입니다.</td>
+			<td>유연주</td>
+			<td>30</td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>5번글입니다.</td>
+			<td>오지영</td>
+			<td>20</td>
+		</tr>
+	</tbody>
+</table>
+<hr>
+
+</body>
+</html>
+
+

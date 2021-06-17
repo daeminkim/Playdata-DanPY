@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	// :checkbox -> 체크박스 노드들을 조회
+	// 실행시에 있는 태그(노드)들에게 event handler를 추가한다.
+	$(":checkbox").on("click", function(){
+		alert(this.value);
+	});
+	
+	$("#btn").on("click", function(){
+		$("#chk_layer").show();
+		$("<input type='checkbox' value='new checkbox'>").appendTo("#chk_layer");
+	});
+	
+	// # chk_layer의 자손노드들 중에 체크박스(:checkbox)들에 click 이벤트 핸들러를 추가 하겠다. (on()함수 실행 이후에 생성되는 것들도 적용.)
+	$("#chk_layer").on("click", ":checkbox", function(){
+		alert(this.checked);
+	});
+	
+});
+</script>
+<style type="text/css">
+div{
+	width: 100%;/*너비설정 - 화면의 너비를 100% 차지하도록 설정*/
+	height: auto;/*높이설정 - 들어가 있는 내용물의 높이에 맞게 자동 설정되도록 설정*/
+	border: 1px solid gray;/*경계선 (두께 모양 색) 설정*/
+	display:none; /*화면에 안나오게 한다.*/
+}
+</style>
+</head>
+<body>
+체크박스 : <input type="checkbox" value="1번 체크박스" name="chk">
+<input type="button" value="체크박스 생성" id="btn">
+<p>
+<div id="chk_layer"></div>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
